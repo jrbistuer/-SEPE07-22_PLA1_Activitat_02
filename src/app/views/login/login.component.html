@@ -1,0 +1,20 @@
+<h1>login works!</h1>
+
+<form class="form form-public form-wizard" [formGroup]="loginForm" name="loginForm" novalidate autocomplete="off"
+*ngIf="loginForm">
+
+    <div class="form-group">
+    <label for="email" class="control-label">Email</label>
+    <input id="email" type="text" name="email" appFirstUppercase class="form-control ng-fade"
+            formControlName="email" maxlength="40"/>
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="control-label">Password</label>
+        <input id="password" type="password" name="password" appFirstUppercase class="form-control ng-fade"
+            formControlName="password" maxlength="40"/>
+    </div>
+
+    <button type="button" (click)="login()">Entrar</button>    
+  
+</form>

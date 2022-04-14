@@ -1,0 +1,14 @@
+<h1>Vacances!</h1>
+
+<h3>Llistat</h3>
+
+<h4>Navegació html</h4>
+<ul>
+    <li *ngFor="let vacanca of vacances"><a [routerLink]="['/detail', vacanca.id]">{{vacanca.titol}}</a></li>
+</ul>
+
+<h4>Navegació programàtica</h4>
+<ul>
+    <li *ngFor="let vacanca of vacances" (click)="goToDetail(vacanca.id)">{{vacanca.titol}}</li>
+</ul>
+
