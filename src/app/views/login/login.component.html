@@ -1,20 +1,22 @@
-<h1>login works!</h1>
+<h1>Login</h1>
 
-<form class="form form-public form-wizard" [formGroup]="loginForm" name="loginForm" novalidate autocomplete="off"
+<form [formGroup]="loginForm" name="loginForm" novalidate autocomplete="off"
 *ngIf="loginForm">
 
-    <div class="form-group">
-    <label for="email" class="control-label">Email</label>
-    <input id="email" type="text" name="email" appFirstUppercase class="form-control ng-fade"
-            formControlName="email" maxlength="40"/>
-    </div>
+    <mat-form-field appearance="fill">
+        <mat-label>Correu</mat-label>
+        <input matInput id="mail" type="text" name="mail"
+            formControlName="mail" maxlength="40"/>
+        <mat-error>Aquest camp és obligatori</mat-error>
+    </mat-form-field>
 
-    <div class="form-group">
-        <label for="password" class="control-label">Password</label>
-        <input id="password" type="password" name="password" appFirstUppercase class="form-control ng-fade"
-            formControlName="password" maxlength="40"/>
-    </div>
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput id="pwd" type="pwd" name="pwd"
+            formControlName="pwd" maxlength="40"/>
+        <mat-error>Aquest camp és obligatori</mat-error>
+    </mat-form-field>
 
-    <button type="button" (click)="login()">Entrar</button>    
+    <button type="button" mat-raised-button color="primary" (click)="login()">Entrar</button>    
   
 </form>
