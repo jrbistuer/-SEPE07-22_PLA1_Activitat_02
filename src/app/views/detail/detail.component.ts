@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Vacanca } from 'src/app/models/vacanca';
 import { DataService } from 'src/app/services/data.service';
 import { Location } from '@angular/common';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-detail',
@@ -16,7 +17,8 @@ export class DetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
-    private location: Location  
+    private location: Location,
+    private sessionService: SessionService
   ) { }
 
   ngOnInit(): void {

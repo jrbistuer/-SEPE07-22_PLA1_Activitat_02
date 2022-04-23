@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Vacanca } from 'src/app/models/vacanca';
 import { DataService } from 'src/app/services/data.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   vacances: Vacanca[] = [];
+
 
   ngOnInit(): void {
     this.vacances = this.dataService.getVacances();

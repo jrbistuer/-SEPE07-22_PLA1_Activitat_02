@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private sessionService: SessionService
   ) { }
 
   ngOnInit(): void {
@@ -27,8 +29,12 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log('test');    
-    this.router.navigate(['/home']);
+    if(this.loginForm.valid) {
+      const mail = this.loginForm.get('mail')?.value;
+      this.sessionService.setUserMail(mail);
+      console.log('test');    
+      this.router.navigate(['/home']);  
+    }
   }
 
 }
