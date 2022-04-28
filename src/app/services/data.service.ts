@@ -23,4 +23,26 @@ export class DataService {
     return this.vacances.filter(vacanca => vacanca.id === id)[0];
   }
 
+  addVacanca(vacanca: Vacanca): void {
+    const lastId = this.vacances[this.vacances.length - 1].id;
+    vacanca.id = lastId + 1;
+    this.vacances.push(vacanca);
+  }
+
+  removeVacanca(id: number): void {
+    this.vacances.forEach((value,index)=>{
+      if(value.id===id) {
+        this.vacances.splice(index,1);
+      }
+    })
+  }
+
+  editVacanca(vacanca: Vacanca): void  {
+    this.vacances.forEach((value,index)=>{
+      if(value.id===vacanca.id) {
+        this.vacances[index] = vacanca;
+      }
+    })
+  }
+
 }

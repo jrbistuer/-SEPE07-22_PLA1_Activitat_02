@@ -5,7 +5,11 @@
 
 <h4>Navegació html</h4>
 <ul>
-    <li *ngFor="let vacanca of vacances"><a [routerLink]="['/detail', vacanca.id]">{{vacanca.titol}}</a></li>
+    <li *ngFor="let vacanca of vacances"><a [routerLink]="['/detail', vacanca.id]">
+        {{vacanca.id}} - {{vacanca.titol}}</a>
+         <mat-icon aria-hidden="false" aria-label="delete" (click)="removeVacanca(vacanca.id)">delete</mat-icon>
+         <mat-icon aria-hidden="false" aria-label="edit" (click)="editVacanca(vacanca)">edit</mat-icon>
+    </li>
 </ul>
 
 <h4>Navegació programàtica</h4>
@@ -13,3 +17,58 @@
     <li *ngFor="let vacanca of vacances" (click)="goToDetail(vacanca.id)">{{vacanca.titol}}</li>
 </ul>
 
+<h1>Nova Vacanca</h1>
+
+<form [formGroup]="vacancaForm" name="loginForm" novalidate autocomplete="off"
+*ngIf="vacancaForm">
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Títol</mat-label>
+            <input matInput id="titol" type="text" name="titol"
+                formControlName="titol" maxlength="40"/>
+            <mat-error>Aquest camp és obligatori</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Ciutat</mat-label>
+            <input matInput id="ciutat" type="ciutat" name="ciutat"
+                formControlName="ciutat" maxlength="40"/>
+            <mat-error>Aquest camp és obligatori</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Hotel</mat-label>
+            <input matInput id="hotel" type="hotel" name="hotel"
+                formControlName="hotel" maxlength="40"/>
+            <mat-error>Aquest camp és obligatori</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Preu</mat-label>
+            <input matInput id="preu" type="preu" name="preu"
+                formControlName="preu" maxlength="40"/>
+            <mat-error>Aquest camp és obligatori</mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Comentaris</mat-label>
+            <textarea matInput id="comentaris" type="comentaris" name="comentaris"
+                formControlName="comentaris" maxlength="40"></textarea>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <button type="button" mat-raised-button color="primary" (click)="addVacanca()">Entrar</button>    
+    </div>
+  
+</form>
