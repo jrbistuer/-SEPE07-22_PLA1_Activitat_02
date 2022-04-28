@@ -6,16 +6,14 @@ import { Vacanca } from '../models/vacanca';
 })
 export class DataService {
 
-  vacances: Vacanca[] = [
-    {id: 1, titol: 'Vacances a Valencia', ciutat: 'Valencia', hotel: 'Hotel Rex VI', preu: '1600€', comentaris: 'Lorem ipsum dolor...'},
-    {id: 2, titol: 'Vacances a Barcelona', ciutat: 'Barcelona', hotel: 'Hotel Ritz', preu: '2600€', comentaris: 'Lorem ipsum dolor...'},
-    {id: 3, titol: 'Vacances a Madrid', ciutat: 'Madrid', hotel: 'Hotel Sheraton', preu: '3600€', comentaris: 'Lorem ipsum dolor...'},
-    {id: 4, titol: 'Vacances a Segovia', ciutat: 'Segovia', hotel: 'Hotel Guionea', preu: '1600€', comentaris: 'Lorem ipsum dolor...'}
-  ]
+  vacances: Vacanca[] = [];
 
   constructor() { }
 
   getVacances(): Vacanca[] {
+    if(this.vacances.length === 0) {
+      this.vacances = JSON.parse(localStorage.getItem('vacances')!)
+    }
     return this.vacances;
   }
 
@@ -24,9 +22,10 @@ export class DataService {
   }
 
   addVacanca(vacanca: Vacanca): void {
-    const lastId = this.vacances[this.vacances.length - 1].id;
+    const lastId = this.vacances.length === 0 ? 0 : this.vacances[this.vacances.length - 1].id;
     vacanca.id = lastId + 1;
     this.vacances.push(vacanca);
+    localStorage.setItem('vacances', JSON.stringify(this.vacances))
   }
 
   removeVacanca(id: number): void {
