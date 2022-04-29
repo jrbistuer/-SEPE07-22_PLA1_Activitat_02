@@ -5,7 +5,7 @@
 
 <h4>Navegació html</h4>
 <ul>
-    <li *ngFor="let vacanca of vacances"><a [routerLink]="['/detail', vacanca.id]">
+    <li *ngFor="let vacanca of vacances"><a [routerLink]="['../detail', vacanca.id]">
         {{vacanca.id}} - {{vacanca.titol}}</a>
          <mat-icon aria-hidden="false" aria-label="delete" (click)="removeVacanca(vacanca.id)">delete</mat-icon>
          <mat-icon aria-hidden="false" aria-label="edit" (click)="editVacanca(vacanca)">edit</mat-icon>
