@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Vacanca } from '../models/vacanca';
 
 @Injectable({
@@ -8,11 +10,22 @@ export class DataService {
 
   vacances: Vacanca[] = [];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) {
+    this.loadData();
+  }
+
+  loadData(): void {
+    this.httpClient.get<Vacanca[]>('https://14337175-4a60-4d94-a68c-f98cfd00815b.mock.pstmn.io/tester').subscribe((data: Vacanca[]) => {
+      this.vacances = data;
+      localStorage.setItem('vacances', JSON.stringify(this.vacances));
+    }, (err) => {
+      console.error(err);
+    });
+  }
 
   getVacances(): Vacanca[] {
     if(this.vacances.length === 0) {
-      this.vacances = JSON.parse(localStorage.getItem('vacances')!)
+      this.vacances = JSON.parse(localStorage.getItem('vacances')!);
     }
     return this.vacances;
   }
@@ -25,7 +38,7 @@ export class DataService {
     const lastId = this.vacances.length === 0 ? 0 : this.vacances[this.vacances.length - 1].id;
     vacanca.id = lastId + 1;
     this.vacances.push(vacanca);
-    localStorage.setItem('vacances', JSON.stringify(this.vacances))
+    localStorage.setItem('vacances', JSON.stringify(this.vacances));
   }
 
   removeVacanca(id: number): void {
