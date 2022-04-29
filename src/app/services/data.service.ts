@@ -10,9 +10,7 @@ export class DataService {
 
   vacances: Vacanca[] = [];
 
-  constructor(private httpClient: HttpClient) {
-    this.loadData();
-  }
+  constructor(private httpClient: HttpClient) { }
 
   loadData(): void {
     this.httpClient.get<Vacanca[]>('https://14337175-4a60-4d94-a68c-f98cfd00815b.mock.pstmn.io/tester').subscribe((data: Vacanca[]) => {
