@@ -12,7 +12,7 @@ export class CanactivateService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if(sessionStorage.getItem('user') !== null) {
+    if(sessionStorage.getItem('mail') !== null) {
       return true;
     } else {
       this.router.navigate(['/login']);

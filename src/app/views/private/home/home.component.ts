@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Vacanca } from 'src/app/models/vacanca';
 import { DataService } from 'src/app/services/data.service';
 
@@ -15,13 +15,14 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   vacances: Vacanca[] = [];
 
   ngOnInit(): void {
-    this.vacances = this.dataService.getVacances();
+    this.vacances = this.route.snapshot.data['vacances'];
     this.createForm();
   }
 

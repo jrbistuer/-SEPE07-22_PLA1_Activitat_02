@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    console.log('v.0.3');
   }
 
   createForm(): void {
@@ -33,7 +34,9 @@ export class LoginComponent implements OnInit {
       const mail = this.loginForm.get('mail')?.value;
       this.sessionService.setUserMail(mail);
       console.log('test');    
-      this.router.navigate(['/home']);  
+      this.router.navigate(['/private/home']);  
+    } else {
+      this.loginForm.markAllAsTouched();
     }
   }
 

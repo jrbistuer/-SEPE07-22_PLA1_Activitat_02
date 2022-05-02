@@ -12,12 +12,17 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) { }
 
-  loadData(): void {
-    this.httpClient.get<Vacanca[]>('https://14337175-4a60-4d94-a68c-f98cfd00815b.mock.pstmn.io/tester').subscribe((data: Vacanca[]) => {
-      this.vacances = data;
-      localStorage.setItem('vacances', JSON.stringify(this.vacances));
-    }, (err) => {
-      console.error(err);
+  loadData() {
+    // return this.httpClient.get<Vacanca[]>('https://14337175-4a60-4d94-a68c-f98cfd00815b.mock.pstmn.io/tester');
+    return new Promise((resolve, error) => {
+      this.httpClient.get<Vacanca[]>('https://14337175-4a60-4d94-a68c-f98cfd00815b.mock.pstmn.io/tester').subscribe((data: Vacanca[]) => {
+        this.vacances = data;
+        localStorage.setItem('vacances', JSON.stringify(this.vacances));
+        resolve(this.vacances);
+      }, (err) => {
+        console.error(err);
+        error(err);
+      });  
     });
   }
 
