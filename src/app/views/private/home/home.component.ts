@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   vacances: Vacanca[] = [];
 
   ngOnInit(): void {
+    console.log('ngOnInit');    
     this.vacances = this.route.snapshot.data['vacances'];
     this.createForm();
   }
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   goToDetail(id: number) {
-    this.router.navigate(['/detail', id]);
+    this.router.navigate(['/private/detail', id]);
   }
   
   removeVacanca(id: number) {
